@@ -5,6 +5,21 @@ android {
     compileSdkVersion 23
     buildToolsVersion "25.0.2"
 
+    defaultConfig {
+        applicationId "com.inst.instcarlauncher"
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0.1"
+
+//        multiDexEnabled true
+
+        ndk {
+            // 设置支持的 SO 库构架，注意这里要根据你的实际情况来设置
+            abiFilters 'armeabi-v7a'//, 'armeabi-v7a'// 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+        }
+    }
+
     sourceSets {
 
         // Move the tests to tests/java, tests/res, etc...
@@ -23,6 +38,7 @@ android {
 
 
 dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
+    compile fileTree(include: '*.jar', dir: 'libs')
+    compile 'com.android.support:support-v4:23.4.0'
 }
 

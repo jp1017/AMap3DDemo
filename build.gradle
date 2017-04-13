@@ -16,4 +16,16 @@ allprojects {
     repositories {
         jcenter()
     }
+
+    //skip task: mockableAndroidJar
+    gradle.taskGraph.whenReady {
+        tasks.each { task ->
+            if (task.name == 'mockableAndroidJar'
+                    //todo 跳过测试Task
+                    || task.name.contains("Test")
+            ) {
+                task.enabled = false
+            }
+        }
+    }
 }

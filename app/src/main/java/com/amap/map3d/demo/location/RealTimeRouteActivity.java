@@ -235,8 +235,10 @@ public class RealTimeRouteActivity extends Activity implements AMapLocationListe
 					if (mLatLngs.size() > 0) {
 						Log.w(TAG, "实时轨迹: 已成功 clear");
 						mLatLngs.clear();
-						mPolyline.remove();
-					}
+                        //不能用remove, 否则就不显示了.
+                        mPolyline.setPoints(mLatLngs);
+
+                    }
 				}
 
 			}
