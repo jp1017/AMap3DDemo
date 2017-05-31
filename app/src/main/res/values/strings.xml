@@ -35,6 +35,7 @@
     <string name="hybrid">Hybrid</string>
     <string name="location">正在定位中</string>
     <string name="gpsfollow">追随</string>
+    <string name="gpsfollownocenter">追随NoCenter</string>
     <string name="gpslocate">定位</string>
     <string name="gpsrotate">旋转</string>
 

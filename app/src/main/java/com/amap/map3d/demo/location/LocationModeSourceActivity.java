@@ -10,18 +10,19 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.map3d.demo.R;
+import com.amap.map3d.demo.util.AMapUtil;
 
 /**
  * AMapV2地图中介绍定位几种
  */
-public class LocationModeSourceActivity extends Activity implements AMap.OnMyLocationChangeListener,
-		OnCheckedChangeListener {
+public class LocationModeSourceActivity extends Activity implements AMap.OnMyLocationChangeListener,OnCheckedChangeListener {
 	private AMap aMap;
 	private MapView mapView;
-	private RadioGroup mGPSModeGroup;
 
 	private MyLocationStyle myLocationStyle;
 
@@ -43,8 +44,8 @@ public class LocationModeSourceActivity extends Activity implements AMap.OnMyLoc
 			aMap = mapView.getMap();
 			setUpMap();
 		}
-		mGPSModeGroup = (RadioGroup) findViewById(R.id.gps_radio_group);
-		mGPSModeGroup.setOnCheckedChangeListener(this);
+		RadioGroup GPSModeGroup = (RadioGroup) findViewById(R.id.gps_radio_group);
+		GPSModeGroup.setOnCheckedChangeListener(this);
 
 		//设置SDK 自带定位消息监听
 		aMap.setOnMyLocationChangeListener(this);
@@ -77,6 +78,12 @@ public class LocationModeSourceActivity extends Activity implements AMap.OnMyLoc
                 // 设置定位的类型为 跟随模式
                 aMap.setMyLocationStyle(myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW));
                 break;
+
+			case R.id.gps_follow_no_center_button:
+				// 设置定位的类型为 跟随模式
+				aMap.setMyLocationStyle(myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER));
+				break;
+
             case R.id.gps_rotate_button:
                 // 设置定位的类型为根据地图面向方向旋转
                 aMap.setMyLocationStyle(myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_MAP_ROTATE));
@@ -141,6 +148,8 @@ public class LocationModeSourceActivity extends Activity implements AMap.OnMyLoc
 				// 定位类型，可能为GPS WIFI等，具体可以参考官网的定位SDK介绍
 				int locationType = bundle.getInt(MyLocationStyle.LOCATION_TYPE);
 
+				//todo 定位到当前位置
+//				aMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
                 /*
                 errorCode
                 errorInfo

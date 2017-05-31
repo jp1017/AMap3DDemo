@@ -43,7 +43,6 @@ import com.amap.map3d.demo.indoor.IndoorMapActivity;
 import com.amap.map3d.demo.inputtip.InputtipsActivity;
 import com.amap.map3d.demo.location.CustomLocationActivity;
 import com.amap.map3d.demo.location.LocationModeSourceActivity;
-import com.amap.map3d.demo.location.RealTimeRouteActivity;
 import com.amap.map3d.demo.offlinemap.OfflineMapActivity;
 import com.amap.map3d.demo.opengl.OpenglActivity;
 import com.amap.map3d.demo.overlay.ArcActivity;
@@ -118,8 +117,7 @@ public final class MainActivity extends ListActivity {
 	}
 
 	private static final DemoDetails[] demos = {
-			new DemoDetails(R.string.basic_realtime, R.string.blank, RealTimeRouteActivity.class),
-//		    创建地图
+//		            创建地图
 			new DemoDetails(R.string.map_create, R.string.blank, null),
 //			显示地图
 			new DemoDetails(R.string.basic_map, R.string.basic_description,

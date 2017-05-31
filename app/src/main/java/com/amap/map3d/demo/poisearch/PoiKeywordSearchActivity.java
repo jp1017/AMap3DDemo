@@ -182,7 +182,7 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
 		ImageButton button = (ImageButton) view
 				.findViewById(R.id.start_amap_app);
 		// 调起高德地图app
-		button.setOnClickListener(new View.OnClickListener() {
+		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				startAMapNavi(marker);
@@ -246,7 +246,7 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
 			packageManager = getApplicationContext().getPackageManager();
 			applicationInfo = packageManager.getApplicationInfo(
 					getPackageName(), 0);
-		} catch (PackageManager.NameNotFoundException e) {
+		} catch (NameNotFoundException e) {
 			applicationInfo = null;
 		}
 		String applicationName = (String) packageManager

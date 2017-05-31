@@ -47,6 +47,13 @@
             android:textColor="@android:color/black" />
 
         <RadioButton
+            android:id="@+id/gps_follow_no_center_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gpsfollownocenter"
+            android:textColor="@android:color/black" />
+
+        <RadioButton
             android:id="@+id/gps_follow_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

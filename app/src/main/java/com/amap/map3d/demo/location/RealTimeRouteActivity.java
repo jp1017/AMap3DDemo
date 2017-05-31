@@ -2,7 +2,6 @@ package com.amap.map3d.demo.location;
 
 
 import android.app.Activity;
-import android.ddm.DdmHandleViewDebug;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,7 +24,6 @@ import com.amap.map3d.demo.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.amap.api.mapcore.util.cs.i;
 
 /**
  * AMapV2地图中实时轨迹

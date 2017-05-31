@@ -385,7 +385,7 @@ public class OfflineChild implements OnClickListener, OnLongClickListener {
 	 * 加入synchronized 避免在dialog还没有关闭的时候再次，请求弹出的bug
 	 */
 	public synchronized void showDeleteDialog(final String name) {
-		AlertDialog.Builder builder = new Builder(mContext);
+		Builder builder = new Builder(mContext);
 
 		builder.setTitle(name);
 		builder.setSingleChoiceItems(new String[] { "删除" }, -1,
@@ -419,7 +419,7 @@ public class OfflineChild implements OnClickListener, OnLongClickListener {
 	 * 长按弹出提示框 删除和更新
 	 */
 	public void showDeleteUpdateDialog(final String name) {
-		AlertDialog.Builder builder = new Builder(mContext);
+		Builder builder = new Builder(mContext);
 
 		builder.setTitle(name);
 		builder.setSingleChoiceItems(new String[] { "删除", "检查更新" }, -1,
