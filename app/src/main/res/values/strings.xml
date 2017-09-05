@@ -4,6 +4,7 @@
     <string name="animate">Animate</string>
     <string name="basic_realtime">实时轨迹</string>
     <string name="basic_map">显示地图</string>
+    <string name="basic_camera_change">地图拖动</string>
     <string name="basic_description">介绍如何创建一个基本地图</string>
     <string name="basic_map_6">显示地图(6种实现地图的方式)</string>
     <string name="basic_description_temp">介绍6种实现地图方式</string>

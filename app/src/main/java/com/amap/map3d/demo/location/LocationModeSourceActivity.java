@@ -149,7 +149,7 @@ public class LocationModeSourceActivity extends Activity implements AMap.OnMyLoc
 				int locationType = bundle.getInt(MyLocationStyle.LOCATION_TYPE);
 
 				//todo 定位到当前位置
-//				aMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
+//				aMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
                 /*
                 errorCode
                 errorInfo

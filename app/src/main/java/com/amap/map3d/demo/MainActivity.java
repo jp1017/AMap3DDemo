@@ -41,6 +41,7 @@ import com.amap.map3d.demo.geocoder.GeocoderActivity;
 import com.amap.map3d.demo.geocoder.ReGeocoderActivity;
 import com.amap.map3d.demo.indoor.IndoorMapActivity;
 import com.amap.map3d.demo.inputtip.InputtipsActivity;
+import com.amap.map3d.demo.location.CameraChangeActivity;
 import com.amap.map3d.demo.location.CustomLocationActivity;
 import com.amap.map3d.demo.location.LocationModeSourceActivity;
 import com.amap.map3d.demo.offlinemap.OfflineMapActivity;
@@ -122,6 +123,10 @@ public final class MainActivity extends ListActivity {
 //			显示地图
 			new DemoDetails(R.string.basic_map, R.string.basic_description,
 					BasicMapActivity.class),
+			//			显示地图
+			new DemoDetails(R.string.basic_camera_change,R.string.blank,
+					CameraChangeActivity.class),
+
 //			6种实现地图方式
 			new DemoDetails(R.string.basic_map_6, R.string.basic_description_temp,
 					MapImpMethodActivity.class),
