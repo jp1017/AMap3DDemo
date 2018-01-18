@@ -2,7 +2,9 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
 
     <com.amap.api.maps.MapView
         android:id="@+id/map"
@@ -16,11 +18,21 @@
         android:textSize="12sp"
         android:text="开启个性化地图"/>
 
+    <view.ScanBoxView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:id="@+id/zxingview"
+        />
+
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:orientation="vertical">
+
+
 
         <Button
             android:id="@+id/basicmap"

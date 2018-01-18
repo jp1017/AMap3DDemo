@@ -1,14 +1,5 @@
 package com.amap.map3d.demo.trace;
 
-import java.io.File;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +23,15 @@ import com.amap.api.trace.TraceListener;
 import com.amap.api.trace.TraceLocation;
 import com.amap.api.trace.TraceOverlay;
 import com.amap.map3d.demo.R;
+
+import java.io.File;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * 轨迹纠偏功能 示例
@@ -216,7 +216,7 @@ public class TraceActivity extends Activity implements TraceListener,
 		mTraceOverlay.setProperCamera(mapList);
 		mResultShow.setText(mDistanceString);
 		mLowSpeedShow.setText(mStopTimeString);
-		mTraceClient = new LBSTraceClient(this.getApplicationContext());
+		mTraceClient = LBSTraceClient.getInstance(getApplicationContext());
 		mTraceClient.queryProcessedTrace(mSequenceLineID, mTraceList,
 				mCoordinateType, this);
 	}
@@ -264,7 +264,6 @@ public class TraceActivity extends Activity implements TraceListener,
 			waittime = overlay.getWaitTime();
 		}
 		DecimalFormat decimalFormat = new DecimalFormat("0.0");
-		;
 		mResultShow.setText(mDistanceString
 				+ decimalFormat.format(distance / 1000d) + DISTANCE_UNIT_DES);
 		mLowSpeedShow.setText(mStopTimeString

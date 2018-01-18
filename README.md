@@ -5,6 +5,9 @@
 1. libgdamapv4sdk736.so和libgdamapv4sdk736ex.so文件是AMap地图引擎，支持Android SDK2.2及以上；
 1. 如果遇到问题，可以上技术支持论坛http://bbs.amap.com/forum.php。
 
+### v1.0.4
+1. 升级地图到5.7.0
+
 ### v1.0.3
 1. 升级地图到5.3.0
 1. 增加拖动demo
