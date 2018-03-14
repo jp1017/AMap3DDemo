@@ -1,9 +1,9 @@
 ﻿## 高德地图demo
 
-
-1. AMap_3DMap_V3.0.jar包是AMap地图包，支持Android SDK2.2及以上.
-1. libgdamapv4sdk736.so和libgdamapv4sdk736ex.so文件是AMap地图引擎，支持Android SDK2.2及以上；
-1. 如果遇到问题，可以上技术支持论坛http://bbs.amap.com/forum.php。
+### v1.0.5
+1. 升级地图到6.0.1
+1. gradle 升级到4.6
+1. android gradle plugin 升级到3.0.1
 
 ### v1.0.4
 1. 升级地图到5.7.0

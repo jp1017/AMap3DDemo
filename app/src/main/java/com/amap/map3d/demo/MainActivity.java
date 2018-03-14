@@ -77,6 +77,7 @@ import com.amap.map3d.demo.tools.ContainsActivity;
 import com.amap.map3d.demo.tools.CoordConverActivity;
 import com.amap.map3d.demo.tools.GeoToScreenActivity;
 import com.amap.map3d.demo.trace.TraceActivity;
+import com.amap.map3d.demo.util.AMapUtil;
 import com.amap.map3d.demo.view.FeatureView;
 import com.amap.map3d.demo.weather.WeatherSearchActivity;
 
@@ -346,6 +347,10 @@ public final class MainActivity extends ListActivity {
 		ListAdapter adapter = new CustomArrayAdapter(
 				this.getApplicationContext(), demos);
 		setListAdapter(adapter);
+
+		//获取基站信息
+		AMapUtil.getTowerInfo(this);
+
 	}
 
 	@Override
