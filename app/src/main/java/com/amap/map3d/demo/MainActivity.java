@@ -13,7 +13,6 @@ import android.widget.ListView;
 
 import com.amap.api.maps.MapsInitializer;
 import com.amap.map3d.demo.basic.Animate_CameraActivity;
-import com.amap.map3d.demo.basic.BaseMapSupportFragmentActivity;
 import com.amap.map3d.demo.basic.BasicMapActivity;
 import com.amap.map3d.demo.basic.CameraActivity;
 import com.amap.map3d.demo.basic.EventsActivity;
@@ -26,7 +25,6 @@ import com.amap.map3d.demo.basic.MapOptionActivity;
 import com.amap.map3d.demo.basic.MinMaxZoomLevelActivity;
 import com.amap.map3d.demo.basic.PoiClickActivity;
 import com.amap.map3d.demo.basic.ScreenShotActivity;
-import com.amap.map3d.demo.basic.TextureMapViewActivity;
 import com.amap.map3d.demo.basic.TwoMapActivity;
 import com.amap.map3d.demo.basic.UiSettingsActivity;
 import com.amap.map3d.demo.basic.ViewPagerWithMapActivity;
@@ -77,6 +75,7 @@ import com.amap.map3d.demo.tools.ContainsActivity;
 import com.amap.map3d.demo.tools.CoordConverActivity;
 import com.amap.map3d.demo.tools.GeoToScreenActivity;
 import com.amap.map3d.demo.trace.TraceActivity;
+import com.amap.map3d.demo.trace.TraceReloadActivity;
 import com.amap.map3d.demo.util.AMapUtil;
 import com.amap.map3d.demo.view.FeatureView;
 import com.amap.map3d.demo.weather.WeatherSearchActivity;
@@ -330,6 +329,10 @@ public final class MainActivity extends ListActivity {
 
 //			地图计算工具
 			new DemoDetails(R.string.map_expand, R.string.blank, null),
+
+			//轨迹回放
+			new DemoDetails(R.string.trace_reload_demo, R.string.trace_reload_demo, TraceReloadActivity.class),
+
 //			轨迹纠偏
 			new DemoDetails(R.string.trace_demo, R.string.trace_description, TraceActivity.class),
 //			平滑移动

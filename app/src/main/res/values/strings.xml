@@ -247,6 +247,9 @@
     <string name="smooth_move_demo">平滑移动</string>
     <string name="smooth_move_description">应用于出行应用的小车平滑移动</string>
 
+    <!--轨迹回放-->
+    <string name="trace_reload_demo">轨迹回放</string>
+
 
     <!-- 自定义样式 -->
     <string name="style_custom_on">开启个性化地图</string>

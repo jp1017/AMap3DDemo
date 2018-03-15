@@ -1,5 +1,10 @@
 ﻿## 高德地图demo
 
+### v1.0.6
+1. 增加轨迹回放demo
+
+![轨迹回放](https://user-images.githubusercontent.com/7868514/37438479-9f574606-282d-11e8-8e5d-b03190fff40c.png)
+
 ### v1.0.5
 1. 升级地图到6.0.1
 1. gradle 升级到4.6
