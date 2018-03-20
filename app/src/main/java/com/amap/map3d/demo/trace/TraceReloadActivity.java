@@ -19,6 +19,7 @@ import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
+import com.amap.api.maps.model.Polyline;
 import com.amap.api.maps.model.PolylineOptions;
 import com.amap.map3d.demo.R;
 
@@ -29,21 +30,12 @@ import java.util.ArrayList;
  */
 
 public class TraceReloadActivity extends FragmentActivity {
-    private static final LatLng marker1 = new LatLng(38.66666, 100.88888888);
-    private static final LatLng marker2 = new LatLng(38.66666, 102.88888888);
-    private static final LatLng marker3 = new LatLng(38.66666, 103.88888888);
-    private static final LatLng marker4 = new LatLng(38.66666, 110.88888888);
-    private static final LatLng marker5 = new LatLng(38.66666, 112.88888888);
-    private static final LatLng marker6 = new LatLng(37.66666, 100.88888888);
-    private static final LatLng marker7 = new LatLng(36.66666, 102.88888888);
-    private static final LatLng marker8 = new LatLng(36.66666, 104.88888888);
-    private static final LatLng marker9 = new LatLng(34.66666, 108.88888888);
-    private static final LatLng marker10 = new LatLng(33.66666, 106.18322);
-
-    private AMap aMap;
+    private AMap mAMap;
     private Button mButton;
     private SeekBar mSeekBar;
-    private Marker mMarker = null;
+    private Marker mCarMarker;
+    private Polyline mPolyline;
+
     // 存放所有坐标的数组
     private final ArrayList<LatLng> mLatLngs = new ArrayList<>();
     private final ArrayList<LatLng> mTraceLatLngs = new ArrayList<>();
@@ -55,7 +47,7 @@ public class TraceReloadActivity extends FragmentActivity {
                 int pro = mSeekBar.getProgress();
                 if (pro != mSeekBar.getMax()) {
                     mSeekBar.setProgress(pro + 1);
-                    mHandler.sendEmptyMessageDelayed(1, 800);
+                    mHandler.sendEmptyMessageDelayed(1, 100);
                 } else {
                     Button button = (Button) findViewById(R.id.btn_replay);
                     button.setText(" 回放 ");// 已执行到最后一个坐标 停止任务
@@ -94,6 +86,12 @@ public class TraceReloadActivity extends FragmentActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
+                if (mPolyline == null) {
+                    final PolylineOptions polylineOptions = new PolylineOptions(); //绘制轨迹线
+                    polylineOptions.color(Color.GREEN).width(8.0f);
+                    mPolyline = mAMap.addPolyline(polylineOptions);
+                }
+
                 mTraceLatLngs.clear();
                 if (progress != 0) {
                     for (int i = 0; i < seekBar.getProgress(); i++) {
@@ -118,81 +116,67 @@ public class TraceReloadActivity extends FragmentActivity {
             }
         });
 
-        if (aMap == null) {
-            aMap = ((SupportMapFragment) getSupportFragmentManager()
+        if (mAMap == null) {
+            mAMap = ((SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map)).getMap();
-            if (aMap != null) {
+            if (mAMap != null) {
                 setUpMap();
             }
         }
     }
 
-    private void drawLine(ArrayList<LatLng> list,int current) {
-        aMap.clear();
-        LatLng replayGeoPoint = mLatLngs.get(current - 1);
-        if (mMarker != null) {
-            mMarker.destroy();
+    private void drawLine(ArrayList<LatLng> latLngs,int current) {
+        LatLng replayGeoPoint = latLngs.get(current - 1);
+        if (mCarMarker != null) {
+            mCarMarker.destroy();
         }
 
         // 添加车辆位置
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions
                 .position(replayGeoPoint)
-                .title("起点")
-                .snippet(" ")
                 .icon(BitmapDescriptorFactory
                         .fromBitmap(BitmapFactory.decodeResource(
                                 getResources(), R.drawable.car)))
                 .anchor(0.5f, 0.5f);
-        mMarker = aMap.addMarker(markerOptions);
+        mCarMarker = mAMap.addMarker(markerOptions);
 
-        // 增加起点位置
-        aMap
-                .addMarker(new MarkerOptions()
-                .position(mLatLngs.get(0))
-                .title("起点")
-                .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
-                        .decodeResource(
-                                getResources(),
-                                R.drawable.nav_route_result_start_point))));
+        mAMap.animateCamera(CameraUpdateFactory.newLatLngZoom(replayGeoPoint, 10));
 
-
-        if (mTraceLatLngs.size() > 1) {
-            PolylineOptions polylineOptions = (new PolylineOptions())
-                    .addAll(mTraceLatLngs)
-                    .color(Color.GREEN).width(8.0f);
-            aMap.addPolyline(polylineOptions);
+        if (latLngs.size() > 1) {
+            mPolyline.setPoints(latLngs);
         }
 
-        if (mTraceLatLngs.size() == mLatLngs.size()) {
-            aMap
+        if (latLngs.size() == mLatLngs.size()) {
+            mAMap
                     .addMarker(new MarkerOptions()
-                    .position(mLatLngs.get(mLatLngs.size() - 1))
-                    .title("终点")
+                    .position(latLngs.get(latLngs.size() - 1))
                     .icon(BitmapDescriptorFactory
                             .fromBitmap(BitmapFactory
                             .decodeResource(getResources(), R.drawable.nav_route_result_end_point))));
         }
     }
 
-
     private void setUpMap() {
-        // 加入坐标
-        mLatLngs.add(marker1);
-        mLatLngs.add(marker2);
-        mLatLngs.add(marker3);
-        mLatLngs.add(marker4);
-        mLatLngs.add(marker5);
-        mLatLngs.add(marker6);
-        mLatLngs.add(marker7);
-        mLatLngs.add(marker8);
-        mLatLngs.add(marker9);
-        mLatLngs.add(marker10);
+        double lat = 36.6666;
+        double lng = 110.8888;
+
+        for (int i = 0; i < 1000; i++) {
+            mLatLngs.add(new LatLng(lat + i / 60, lng + i / 90));
+        }
 
         // 设置进度条最大长度为数组长度
         mSeekBar.setMax(mLatLngs.size());
-        aMap.setMapType(AMap.MAP_TYPE_NORMAL);
-        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mLatLngs.get(0), 4));
+        mAMap.setMapType(AMap.MAP_TYPE_NORMAL);
+        mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mLatLngs.get(0), 4));
+
+        // 增加起点位置
+        mAMap.addMarker(new MarkerOptions()
+                .position(mLatLngs.get(0))
+                .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
+                        .decodeResource(
+                                getResources(),
+                                R.drawable.nav_route_result_start_point))));
     }
 
     public void btn_replay_click(View v) {
