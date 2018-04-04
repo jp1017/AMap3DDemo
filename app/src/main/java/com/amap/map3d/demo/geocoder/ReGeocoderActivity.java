@@ -176,8 +176,8 @@ public class ReGeocoderActivity extends Activity implements
 				addressName = result.getRegeocodeAddress().getFormatAddress()
 						+ "附近";
 				aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-						AMapUtil.convertToLatLng(latLonPoint), 15));
-				regeoMarker.setPosition(AMapUtil.convertToLatLng(latLonPoint));
+						AMapUtil.INSTANCE.convertToLatLng(latLonPoint), 15));
+				regeoMarker.setPosition(AMapUtil.INSTANCE.convertToLatLng(latLonPoint));
 				ToastUtil.show(ReGeocoderActivity.this, addressName);
 			} else {
 				ToastUtil.show(ReGeocoderActivity.this, R.string.no_result);

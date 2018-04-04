@@ -55,8 +55,8 @@ public class BusResultListAdapter extends BaseAdapter {
 		}
 		
 		final BusPath item = mBusPathList.get(position);
-		holder.title.setText(AMapUtil.getBusPathTitle(item));
-		holder.des.setText(AMapUtil.getBusPathDes(item));
+		holder.title.setText(AMapUtil.INSTANCE.getBusPathTitle(item));
+		holder.des.setText(AMapUtil.INSTANCE.getBusPathDes(item));
 		
 		convertView.setOnClickListener(new OnClickListener() {
 			

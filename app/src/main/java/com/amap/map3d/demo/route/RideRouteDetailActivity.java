@@ -28,8 +28,8 @@ public class RideRouteDetailActivity extends Activity {
 		mTitle = (TextView) findViewById(R.id.title_center);
 		mTitle.setText("骑行路线详情");
 		mTitleWalkRoute = (TextView) findViewById(R.id.firstline);
-		String dur = AMapUtil.getFriendlyTime((int) mRidePath.getDuration());
-		String dis = AMapUtil
+		String dur = AMapUtil.INSTANCE.getFriendlyTime((int) mRidePath.getDuration());
+		String dis = AMapUtil.INSTANCE
 				.getFriendlyLength((int) mRidePath.getDistance());
 		mTitleWalkRoute.setText(dur + "(" + dis + ")");
 		mRideSegmentList = (ListView) findViewById(R.id.bus_segment_list);

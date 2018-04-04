@@ -81,10 +81,10 @@ OnMarkerClickListener, OnInfoWindowClickListener, InfoWindowAdapter, OnRouteSear
 	 */
 	private void setfromandtoMarker() {
 		aMap.addMarker(new MarkerOptions()
-		.position(AMapUtil.convertToLatLng(mStartPoint))
+		.position(AMapUtil.INSTANCE.convertToLatLng(mStartPoint))
 		.icon(BitmapDescriptorFactory.fromResource(R.drawable.start)));
 		aMap.addMarker(new MarkerOptions()
-		.position(AMapUtil.convertToLatLng(mEndPoint))
+		.position(AMapUtil.INSTANCE.convertToLatLng(mEndPoint))
 		.icon(BitmapDescriptorFactory.fromResource(R.drawable.end)));		
 	}
 

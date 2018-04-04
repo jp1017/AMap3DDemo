@@ -90,7 +90,7 @@ public class DriveSegmentListAdapter extends BaseAdapter {
 			return convertView;
 		} else {
 			String actionName = item.getAction();
-			int resID = AMapUtil.getDriveActionID(actionName);
+			int resID = AMapUtil.INSTANCE.getDriveActionID(actionName);
 			holder.driveDirIcon.setImageResource(resID);
 			holder.driveLineName.setText(item.getInstruction());
 			holder.driveDirUp.setVisibility(View.VISIBLE);

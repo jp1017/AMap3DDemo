@@ -43,8 +43,8 @@ public class BusRouteOverlay extends RouteOverlay {
 			LatLonPoint start, LatLonPoint end) {
 		super(context);
 		this.busPath = path;
-		startPoint = AMapUtil.convertToLatLng(start);
-		endPoint = AMapUtil.convertToLatLng(end);
+		startPoint = AMapUtil.INSTANCE.convertToLatLng(start);
+		endPoint = AMapUtil.INSTANCE.convertToLatLng(end);
 		mAMap = amap;
 	}
 
@@ -130,14 +130,14 @@ public class BusRouteOverlay extends RouteOverlay {
 					addBusLineSteps(routeBusLineItem);
 					addBusStationMarkers(routeBusLineItem);
 					if (i == busSteps.size() - 1) {
-						addWalkPolyline(AMapUtil.convertToLatLng(getLastBuslinePoint(busStep)), endPoint);
+						addWalkPolyline(AMapUtil.INSTANCE.convertToLatLng(getLastBuslinePoint(busStep)), endPoint);
 					}
 				}
 				if (busStep.getRailway() != null) {
 					addRailwayStep(busStep.getRailway());
 					addRailwayMarkers(busStep.getRailway());
 					if (i == busSteps.size() - 1) {
-						addWalkPolyline(AMapUtil.convertToLatLng(busStep.getRailway().getArrivalstop().getLocation()), endPoint);
+						addWalkPolyline(AMapUtil.INSTANCE.convertToLatLng(busStep.getRailway().getArrivalstop().getLocation()), endPoint);
 					}
 				}
 				if (busStep.getTaxi() != null) {
@@ -196,7 +196,7 @@ public class BusRouteOverlay extends RouteOverlay {
 		railwayStationItems.addAll(railway.getViastops());
 		railwayStationItems.add(railway.getArrivalstop());
 		for (int i = 0; i < railwayStationItems.size(); i++) {
-			railwaylistpoint.add(AMapUtil.convertToLatLng(railwayStationItems.get(i).getLocation()));
+			railwaylistpoint.add(AMapUtil.INSTANCE.convertToLatLng(railwayStationItems.get(i).getLocation()));
 		}
 		addRailwayPolyline(railwaylistpoint);
 	}
@@ -204,8 +204,8 @@ public class BusRouteOverlay extends RouteOverlay {
 	private void addTaxiStep(TaxiItem taxi){
 		addPolyLine(new PolylineOptions().width(getRouteWidth())
 				.color(getBusColor())
-				.add(AMapUtil.convertToLatLng(taxi.getOrigin()))
-				.add(AMapUtil.convertToLatLng(taxi.getDestination())));
+				.add(AMapUtil.INSTANCE.convertToLatLng(taxi.getOrigin()))
+				.add(AMapUtil.INSTANCE.convertToLatLng(taxi.getDestination())));
 	}
 
 	/**
@@ -217,14 +217,14 @@ public class BusRouteOverlay extends RouteOverlay {
 		for (int j = 0; j < walkSteps.size(); j++) {
 			WalkStep walkStep = walkSteps.get(j);
 			if (j == 0) {
-				LatLng latLng = AMapUtil.convertToLatLng(walkStep
+				LatLng latLng = AMapUtil.INSTANCE.convertToLatLng(walkStep
 						.getPolyline().get(0));
 				String road = walkStep.getRoad();// 道路名字
 				String instruction = getWalkSnippet(walkSteps);// 步行导航信息
 				addWalkStationMarkers(latLng, road, instruction);
 			}
 
-			List<LatLng> listWalkPolyline = AMapUtil
+			List<LatLng> listWalkPolyline = AMapUtil.INSTANCE
 					.convertArrList(walkStep.getPolyline());
 			this.latLng = listWalkPolyline.get(listWalkPolyline.size() - 1);
 
@@ -234,7 +234,7 @@ public class BusRouteOverlay extends RouteOverlay {
 			if (j < walkSteps.size() - 1) {
 				LatLng lastLatLng = listWalkPolyline.get(listWalkPolyline
 						.size() - 1);
-				LatLng firstlatLatLng = AMapUtil
+				LatLng firstlatLatLng = AMapUtil.INSTANCE
 						.convertToLatLng(walkSteps.get(j + 1).getPolyline()
 								.get(0));
 				if (!(lastLatLng.equals(firstlatLatLng))) {
@@ -260,7 +260,7 @@ public class BusRouteOverlay extends RouteOverlay {
 		}
 		addPolyLine(new PolylineOptions().width(getRouteWidth())
 				.color(getBusColor())
-				.addAll(AMapUtil.convertArrList(listPoints)));
+				.addAll(AMapUtil.INSTANCE.convertArrList(listPoints)));
 	}
 
 	/**
@@ -282,7 +282,7 @@ public class BusRouteOverlay extends RouteOverlay {
 	private void addBusStationMarkers(RouteBusLineItem routeBusLineItem) {
 		BusStationItem startBusStation = routeBusLineItem
 				.getDepartureBusStation();
-		LatLng position = AMapUtil.convertToLatLng(startBusStation
+		LatLng position = AMapUtil.INSTANCE.convertToLatLng(startBusStation
 				.getLatLonPoint());
 		String title = routeBusLineItem.getBusLineName();
 		String snippet = getBusSnippet(routeBusLineItem);
@@ -294,7 +294,7 @@ public class BusRouteOverlay extends RouteOverlay {
 	
 	private void addTaxiMarkers(TaxiItem taxiItem) {
 		
-		LatLng position = AMapUtil.convertToLatLng(taxiItem
+		LatLng position = AMapUtil.INSTANCE.convertToLatLng(taxiItem
 				.getOrigin());
 		String title = taxiItem.getmSname()+"打车";
 		String snippet = "到终点";
@@ -305,7 +305,7 @@ public class BusRouteOverlay extends RouteOverlay {
 	}
 
 	private void addRailwayMarkers(RouteRailwayItem railway) {
-		LatLng Departureposition = AMapUtil.convertToLatLng(railway
+		LatLng Departureposition = AMapUtil.INSTANCE.convertToLatLng(railway
 				.getDeparturestop().getLocation());
 		String Departuretitle = railway.getDeparturestop().getName()+"上车";
 		String Departuresnippet = railway.getName();
@@ -315,7 +315,7 @@ public class BusRouteOverlay extends RouteOverlay {
 				.icon(getBusBitmapDescriptor()));
 		
 		
-		LatLng Arrivalposition = AMapUtil.convertToLatLng(railway
+		LatLng Arrivalposition = AMapUtil.INSTANCE.convertToLatLng(railway
 				.getArrivalstop().getLocation());
 		String Arrivaltitle = railway.getArrivalstop().getName()+"下车";
 		String Arrivalsnippet = railway.getName();
@@ -331,9 +331,9 @@ public class BusRouteOverlay extends RouteOverlay {
 	 * @param busStep1
 	 */
 	private void checkBusToNextBusNoWalk(BusStep busStep, BusStep busStep1) {
-		LatLng endbusLatLng = AMapUtil
+		LatLng endbusLatLng = AMapUtil.INSTANCE
 				.convertToLatLng(getLastBuslinePoint(busStep));
-		LatLng startbusLatLng = AMapUtil
+		LatLng startbusLatLng = AMapUtil.INSTANCE
 				.convertToLatLng(getFirstBuslinePoint(busStep1));
 		if (startbusLatLng.latitude - endbusLatLng.latitude > 0.0001
 				|| startbusLatLng.longitude - endbusLatLng.longitude > 0.0001) {
@@ -350,9 +350,9 @@ public class BusRouteOverlay extends RouteOverlay {
 	 */
 	private void checkBusEndToNextBusStart(BusStep busStep, BusStep busStep1) {
 		LatLonPoint busLastPoint = getLastBuslinePoint(busStep);
-		LatLng endbusLatLng = AMapUtil.convertToLatLng(busLastPoint);
+		LatLng endbusLatLng = AMapUtil.INSTANCE.convertToLatLng(busLastPoint);
 		LatLonPoint busFirstPoint = getFirstBuslinePoint(busStep1);
-		LatLng startbusLatLng = AMapUtil.convertToLatLng(busFirstPoint);
+		LatLng startbusLatLng = AMapUtil.INSTANCE.convertToLatLng(busFirstPoint);
 		if (!endbusLatLng.equals(startbusLatLng)) {
 			drawLineArrow(endbusLatLng, startbusLatLng);//
 		}
@@ -399,8 +399,8 @@ public class BusRouteOverlay extends RouteOverlay {
 	 */
 	private void addWalkPolyLineByLatLonPoints(LatLonPoint pointFrom,
 			LatLonPoint pointTo) {
-		LatLng latLngFrom = AMapUtil.convertToLatLng(pointFrom);
-		LatLng latLngTo = AMapUtil.convertToLatLng(pointTo);
+		LatLng latLngFrom = AMapUtil.INSTANCE.convertToLatLng(pointFrom);
+		LatLng latLngTo = AMapUtil.INSTANCE.convertToLatLng(pointTo);
 
 		addWalkPolyline(latLngFrom, latLngTo);
 	}

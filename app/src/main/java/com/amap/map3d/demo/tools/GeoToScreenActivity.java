@@ -116,8 +116,8 @@ public class GeoToScreenActivity extends Activity implements OnMapClickListener,
 	}
 	
 	private void toGeoLocation() {
-		if (AMapUtil.IsEmptyOrNullString(xView.getText().toString()) ||
-				AMapUtil.IsEmptyOrNullString(yView.getText().toString())) {
+		if (AMapUtil.INSTANCE.IsEmptyOrNullString(xView.getText().toString()) ||
+				AMapUtil.INSTANCE.IsEmptyOrNullString(yView.getText().toString())) {
 			Toast.makeText(GeoToScreenActivity.this, "x和y为空", Toast.LENGTH_SHORT).show();
 		} else {
 			x = Integer.parseInt(xView.getText().toString().trim());
@@ -132,8 +132,8 @@ public class GeoToScreenActivity extends Activity implements OnMapClickListener,
 		
 	}
 	private void toScreenLocation() {
-		if (AMapUtil.IsEmptyOrNullString(latView.getText().toString()) ||
-				AMapUtil.IsEmptyOrNullString(lngView.getText().toString())) {
+		if (AMapUtil.INSTANCE.IsEmptyOrNullString(latView.getText().toString()) ||
+				AMapUtil.INSTANCE.IsEmptyOrNullString(lngView.getText().toString())) {
 			Toast.makeText(GeoToScreenActivity.this, "经纬度为空", Toast.LENGTH_SHORT).show();
 		} else {
 			lat = Float.parseFloat(latView.getText().toString().trim());

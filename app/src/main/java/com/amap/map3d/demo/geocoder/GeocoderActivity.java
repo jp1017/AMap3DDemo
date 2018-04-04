@@ -147,8 +147,8 @@ public class GeocoderActivity extends Activity implements
 					&& result.getGeocodeAddressList().size() > 0) {
 				GeocodeAddress address = result.getGeocodeAddressList().get(0);
 				aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-						AMapUtil.convertToLatLng(address.getLatLonPoint()), 15));
-				geoMarker.setPosition(AMapUtil.convertToLatLng(address
+						AMapUtil.INSTANCE.convertToLatLng(address.getLatLonPoint()), 15));
+				geoMarker.setPosition(AMapUtil.INSTANCE.convertToLatLng(address
 						.getLatLonPoint()));
 				addressName = "经纬度值:" + address.getLatLonPoint() + "\n位置描述:"
 						+ address.getFormatAddress();

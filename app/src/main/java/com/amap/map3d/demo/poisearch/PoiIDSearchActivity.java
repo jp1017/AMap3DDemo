@@ -126,7 +126,7 @@ OnPoiSearchListener {
 		if (rCode == AMapException.CODE_AMAP_SUCCESS) {
 			if (item != null) {
 				mPoi = item;
-				detailMarker.setPosition(AMapUtil.convertToLatLng(mPoi.getLatLonPoint()));
+				detailMarker.setPosition(AMapUtil.INSTANCE.convertToLatLng(mPoi.getLatLonPoint()));
 				setPoiItemDisplayContent(mPoi);
 				whetherToShowDetailInfo(true);
 			}

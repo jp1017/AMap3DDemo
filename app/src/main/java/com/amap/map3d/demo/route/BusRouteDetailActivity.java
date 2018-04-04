@@ -62,8 +62,8 @@ OnMapClickListener, InfoWindowAdapter, OnInfoWindowClickListener, OnMarkerClickL
 		mTitle.setText("公交路线详情");
 		mTitleBusRoute = (TextView) findViewById(R.id.firstline);
 		mDesBusRoute = (TextView) findViewById(R.id.secondline);
-		String dur = AMapUtil.getFriendlyTime((int) mBuspath.getDuration());
-		String dis = AMapUtil.getFriendlyLength((int) mBuspath.getDistance());
+		String dur = AMapUtil.INSTANCE.getFriendlyTime((int) mBuspath.getDuration());
+		String dis = AMapUtil.INSTANCE.getFriendlyLength((int) mBuspath.getDistance());
 		mTitleBusRoute.setText(dur + "(" + dis + ")");
 		int taxiCost = (int) mBusRouteResult.getTaxiCost();
 		mDesBusRoute.setText("打车约"+taxiCost+"元");

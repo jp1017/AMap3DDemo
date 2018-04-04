@@ -103,7 +103,7 @@ private AutoCompleteTextView mKeywordText;
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
     	String newText = s.toString().trim();
-    	if (!AMapUtil.IsEmptyOrNullString(newText)) {
+    	if (!AMapUtil.INSTANCE.IsEmptyOrNullString(newText)) {
     		InputtipsQuery inputquery = new InputtipsQuery(newText, city);
     		inputquery.setCityLimit(true);
     		Inputtips inputTips = new Inputtips(SubPoiSearchActivity.this, inputquery);

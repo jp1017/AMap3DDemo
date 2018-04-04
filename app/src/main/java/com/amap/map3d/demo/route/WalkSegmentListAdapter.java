@@ -87,7 +87,7 @@ public class WalkSegmentListAdapter extends BaseAdapter {
 			holder.dirUp.setVisibility(View.VISIBLE);
 			holder.dirDown.setVisibility(View.VISIBLE);
 			String actionName = item.getAction();
-			int resID = AMapUtil.getWalkActionID(actionName);
+			int resID = AMapUtil.INSTANCE.getWalkActionID(actionName);
 			holder.dirIcon.setImageResource(resID);
 			holder.lineName.setText(item.getInstruction());
 			return convertView;

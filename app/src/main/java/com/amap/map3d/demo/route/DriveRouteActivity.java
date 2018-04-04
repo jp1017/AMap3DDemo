@@ -69,10 +69,10 @@ OnMarkerClickListener, OnInfoWindowClickListener, InfoWindowAdapter, OnRouteSear
 
 	private void setfromandtoMarker() {
 		aMap.addMarker(new MarkerOptions()
-		.position(AMapUtil.convertToLatLng(mStartPoint))
+		.position(AMapUtil.INSTANCE.convertToLatLng(mStartPoint))
 		.icon(BitmapDescriptorFactory.fromResource(R.drawable.start)));
 		aMap.addMarker(new MarkerOptions()
-		.position(AMapUtil.convertToLatLng(mEndPoint))
+		.position(AMapUtil.INSTANCE.convertToLatLng(mEndPoint))
 		.icon(BitmapDescriptorFactory.fromResource(R.drawable.end)));		
 	}
 
@@ -182,7 +182,7 @@ OnMarkerClickListener, OnInfoWindowClickListener, InfoWindowAdapter, OnRouteSear
 					mBottomLayout.setVisibility(View.VISIBLE);
 					int dis = (int) drivePath.getDistance();
 					int dur = (int) drivePath.getDuration();
-					String des = AMapUtil.getFriendlyTime(dur)+"("+AMapUtil.getFriendlyLength(dis)+")";
+					String des = AMapUtil.INSTANCE.getFriendlyTime(dur)+"("+ AMapUtil.INSTANCE.getFriendlyLength(dis)+")";
 					mRotueTimeDes.setText(des);
 					mRouteDetailDes.setVisibility(View.VISIBLE);
 					int taxiCost = (int) mDriveRouteResult.getTaxiCost();

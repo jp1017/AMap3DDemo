@@ -97,7 +97,7 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
 	 * 点击搜索按钮
 	 */
 	public void searchButton() {
-		keyWord = AMapUtil.checkEditText(searchText);
+		keyWord = AMapUtil.INSTANCE.checkEditText(searchText);
 		if ("".equals(keyWord)) {
 			ToastUtil.show(PoiKeywordSearchActivity.this, "请输入搜索关键字");
 			return;
@@ -282,7 +282,7 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
 		String newText = s.toString().trim();
-		if (!AMapUtil.IsEmptyOrNullString(newText)) {
+		if (!AMapUtil.INSTANCE.IsEmptyOrNullString(newText)) {
 		    InputtipsQuery inputquery = new InputtipsQuery(newText, editCity.getText().toString());
 		    Inputtips inputTips = new Inputtips(PoiKeywordSearchActivity.this, inputquery);
 		    inputTips.setInputtipsListener(this);

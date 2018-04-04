@@ -25,8 +25,8 @@ public class WalkRouteDetailActivity extends Activity {
 		mTitle = (TextView) findViewById(R.id.title_center);
 		mTitle.setText("步行路线详情");
 		mTitleWalkRoute = (TextView) findViewById(R.id.firstline);
-		String dur = AMapUtil.getFriendlyTime((int) mWalkPath.getDuration());
-		String dis = AMapUtil
+		String dur = AMapUtil.INSTANCE.getFriendlyTime((int) mWalkPath.getDuration());
+		String dis = AMapUtil.INSTANCE
 				.getFriendlyLength((int) mWalkPath.getDistance());
 		mTitleWalkRoute.setText(dur + "(" + dis + ")");
 		mWalkSegmentList = (ListView) findViewById(R.id.bus_segment_list);

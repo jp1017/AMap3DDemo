@@ -41,8 +41,8 @@ public class RideRouteOverlay extends RouteOverlay {
 		super(context);
 		this.mAMap = amap;
 		this.ridePath = path;
-		startPoint = AMapUtil.convertToLatLng(start);
-		endPoint = AMapUtil.convertToLatLng(end);
+		startPoint = AMapUtil.INSTANCE.convertToLatLng(start);
+		endPoint = AMapUtil.INSTANCE.convertToLatLng(end);
 	}
 	/**
 	 * 添加骑行路线到地图中。
@@ -56,7 +56,7 @@ public class RideRouteOverlay extends RouteOverlay {
 			mPolylineOptions.add(startPoint);
 			for (int i = 0; i < ridePaths.size(); i++) {
 				RideStep rideStep = ridePaths.get(i);
-				LatLng latLng = AMapUtil.convertToLatLng(rideStep
+				LatLng latLng = AMapUtil.INSTANCE.convertToLatLng(rideStep
 						.getPolyline().get(0));
 				
 				addRideStationMarkers(rideStep, latLng);
@@ -76,7 +76,7 @@ public class RideRouteOverlay extends RouteOverlay {
 	 * @param rideStep
 	 */
 	private void addRidePolyLines(RideStep rideStep) {
-		mPolylineOptions.addAll(AMapUtil.convertArrList(rideStep.getPolyline()));
+		mPolylineOptions.addAll(AMapUtil.INSTANCE.convertArrList(rideStep.getPolyline()));
 	}
 	/**
 	 * @param rideStep

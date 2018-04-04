@@ -56,8 +56,8 @@ public class DrivingRouteOverlay extends RouteOverlay{
     	mContext = context; 
         mAMap = amap; 
         this.drivePath = path;
-        startPoint = AMapUtil.convertToLatLng(start);
-        endPoint = AMapUtil.convertToLatLng(end);
+        startPoint = AMapUtil.INSTANCE.convertToLatLng(start);
+        endPoint = AMapUtil.INSTANCE.convertToLatLng(end);
         this.throughPointList = throughPointList;
     }
 
@@ -162,14 +162,14 @@ public class DrivingRouteOverlay extends RouteOverlay{
         mPolylineOptionscolor.width(getRouteWidth());
         List<Integer> colorList = new ArrayList<Integer>();
         mPolylineOptionscolor.add(startPoint);
-        mPolylineOptionscolor.add(AMapUtil.convertToLatLng(tmcSection.get(0).getPolyline().get(0)));
+        mPolylineOptionscolor.add(AMapUtil.INSTANCE.convertToLatLng(tmcSection.get(0).getPolyline().get(0)));
         colorList.add(getDriveColor());
         for (int i = 0; i < tmcSection.size(); i++) {
         	segmentTrafficStatus = tmcSection.get(i);
         	int color = getcolor(segmentTrafficStatus.getStatus());
         	List<LatLonPoint> mployline = segmentTrafficStatus.getPolyline();
 			for (int j = 1; j < mployline.size(); j++) {
-				mPolylineOptionscolor.add(AMapUtil.convertToLatLng(mployline.get(j)));
+				mPolylineOptionscolor.add(AMapUtil.INSTANCE.convertToLatLng(mployline.get(j)));
 				colorList.add(color);
 			}
 		}
